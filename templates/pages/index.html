@@ -1,86 +1,86 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقعي الإلكتروني</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    {%include 'parts/navbar.html'%}
-    <!-- قسم الهيرو -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>حلولك التقنية في مكان واحد</h1>
-                <p>نقدم خدمات وتقنيات متطورة تساعد عملك على النمو والازدهار في العصر الرقمي</p>
-                <a href="#" class="btn">اكتشف المزيد</a>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>موقعي الإلكتروني</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        {%include 'parts/navbar.html'%}
+        <!-- قسم الهيرو -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>حلولك التقنية في مكان واحد</h1>
+                    <p>نقدم خدمات وتقنيات متطورة تساعد عملك على النمو والازدهار في العصر الرقمي</p>
+                    <a href="#" class="btn">اكتشف المزيد</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- قسم الخدمات -->
-    <section class="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>خدماتنا</h2>
-                <p>نقدم مجموعة واسعة من الخدمات التقنية لتلبية احتياجاتك</p>
+        <!-- قسم الخدمات -->
+        <section class="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>خدماتنا</h2>
+                    <p>نقدم مجموعة واسعة من الخدمات التقنية لتلبية احتياجاتك</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>تطوير الويب</h3>
+                        <p>تصميم وتطوير مواقع ويب احترافية بتقنيات حديثة وتصميم متجاوب</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>تطبيقات الجوال</h3>
+                        <p>بناء تطبيقات جوال مبتكرة لأنظمة iOS و Android</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>التسويق الرقمي</h3>
+                        <p>تحسين وجودك على الإنترنت وزيادة حركة الزوار لموقعك</p>
+                    </div>
+                </div>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fas fa-laptop-code"></i>
-                    <h3>تطوير الويب</h3>
-                    <p>تصميم وتطوير مواقع ويب احترافية بتقنيات حديثة وتصميم متجاوب</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>تطبيقات الجوال</h3>
-                    <p>بناء تطبيقات جوال مبتكرة لأنظمة iOS و Android</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>التسويق الرقمي</h3>
-                    <p>تحسين وجودك على الإنترنت وزيادة حركة الزوار لموقعك</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- قسم المشاريع -->
-    <section class="projects">
-        <div class="container">
-            <div class="section-title">
-                <h2>مشاريعنا الأخيرة</h2>
-                <p>إليك بعض أعمالنا التي نفخر بها</p>
+        <!-- قسم المشاريع -->
+        <section class="projects">
+            <div class="container">
+                <div class="section-title">
+                    <h2>مشاريعنا الأخيرة</h2>
+                    <p>إليك بعض أعمالنا التي نفخر بها</p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-img">مشروع تجارة إلكترونية</div>
+                        <div class="project-content">
+                            <h3>منصة تسوق</h3>
+                            <p>منصة تسوق إلكتروني بميزات متطورة وواجهة مستخدم رائعة</p>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-img">تطبيق تعليمي</div>
+                        <div class="project-content">
+                            <h3>تعلم اللغة</h3>
+                            <p>تطبيق يساعد المستخدمين على تعلم لغات جديدة بطرق تفاعلية</p>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-img">موقع شركة</div>
+                        <div class="project-content">
+                            <h3>موقع مؤسسي</h3>
+                            <p>تصميم موقع احترافي لشركة بمحتوى ديناميكي وسهولة في التصفح</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-img">مشروع تجارة إلكترونية</div>
-                    <div class="project-content">
-                        <h3>منصة تسوق</h3>
-                        <p>منصة تسوق إلكتروني بميزات متطورة وواجهة مستخدم رائعة</p>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img">تطبيق تعليمي</div>
-                    <div class="project-content">
-                        <h3>تعلم اللغة</h3>
-                        <p>تطبيق يساعد المستخدمين على تعلم لغات جديدة بطرق تفاعلية</p>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img">موقع شركة</div>
-                    <div class="project-content">
-                        <h3>موقع مؤسسي</h3>
-                        <p>تصميم موقع احترافي لشركة بمحتوى ديناميكي وسهولة في التصفح</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    {%include 'parts/foter.html'%}
-</body>
+        </section>
+        {%include 'parts/foter.html'%}
+    </body>
 </html>
 
 
