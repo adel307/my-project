@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>موقعي الإلكتروني</title>
+        <!--<link rel="stylesheet" href="{% static 'css/style.css' %}">-->
+    </head>
+    <body>
+        {%include 'parts/navbar.html'%}
+
+        <div class="content" dir="ltr" >
+            <h1 > our products :</h1>
+            <div class="products" >
+
+                <div class="name">
+                    <h1>name:</h1>
+                    {% for x in pro %}
+                        <p> {{x.name}} </p>
+                    {% endfor %}
+                </div>
+
+                <div class="price" >
+                    <h1>price:</h1>
+                    {% for x in pro %}
+                        <p> {{x.price}} </p>
+                    {% endfor %}
+                </div>
+
+                <div class="cotegory" >
+                    <h1>cotegory:</h1>
+                    {% for x in pro %}
+                        <p> {{x.cotegory}} </p>
+                    {% endfor %}
+                </div>
+            </div>
+            
+        </div>
+
+        {%include 'parts/foter.html'%}
+    </body>
+</html>
+
+
