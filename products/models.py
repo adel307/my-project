@@ -68,5 +68,5 @@ class Market (models.Model):
         ('aslamboom','aslambool'),
     ]
     place = models.CharField(max_length = 100,verbose_name = 'market place',choices = branch)
-    vesetors = models.ManyToManyField(Clint)
+    vesetors = models.ManyToManyField(Clint,null = True)
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Product
+from .models import Product ,Clint ,Market
 # Create your views here.
 def products(request):
-    return render(request,'products/products.html',{"pro" : Product.objects.all()})
+    return render(request,'products/products.html',{"product_card" : Product.objects.all(),'clints_card':Clint.objects.all(),'markets_card':Market.objects.all()})
