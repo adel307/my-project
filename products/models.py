@@ -61,13 +61,12 @@ class Clint (models.Model):
 
 class Market (models.Model):
     id = models.AutoField(primary_key=True)
-    place = models.CharField(max_length = 100,verbose_name = 'market place')
     branch = [
         ('dirleen','dirleen'),
         ('cairo','cairo'),
         ('changahi','changahi'),
         ('aslamboom','aslambool'),
     ]
-    branch = models.CharField(max_length = 100,verbose_name = 'category',choices = branch)
-    vesetors = models.ManyToManyField(Clint,null = True)
+    place = models.CharField(max_length = 100,verbose_name = 'market place',choices = branch)
+    vesetors = models.ManyToManyField(Clint)
 
