@@ -69,4 +69,5 @@ class Market (models.Model):
         ('aslamboom','aslambool'),
     ]
     branch = models.CharField(max_length = 100,verbose_name = 'category',choices = branch)
+    vesetors = models.ManyToManyField(Clint,null = True)
 
