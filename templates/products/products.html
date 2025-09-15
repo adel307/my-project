@@ -10,7 +10,6 @@
 </head>
 <body>
     {% include 'parts/navbar.html' %}
-
     <div class="content">
         <div class="header">
             <h1>نظام إدارة المنتجات والعملاء والأسواق</h1>
@@ -45,52 +44,6 @@
                 {% endfor %}
             </div>
         </div>
-
-        <!-- قسم العملاء -->
-        <div class="section">
-            <h2>العملاء المسجلين</h2>
-            <div class="grid-container">
-                {% for clint in clints_card %}
-                <div class="card clint-card">
-                    <h3>{{ clint.name }}</h3>
-                    <p>الهاتف: {{ clint.phone }}</p>
-                    <p>المنتج: {{ clint.product.name }}</p>
-                    <p class="price-tag">سعر المنتج: {{ clint.product.price }} $</p>
-                </div>
-                {% empty %}
-                <div class="empty-message">
-                    <p>لا يوجد عملاء مسجلين حالياً.</p>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <!-- قسم الأسواق -->
-        <div class="section">
-            <h2>فروع الأسواق</h2>
-            <div class="grid-container">
-                {% for market in markets_card %}
-                <div class="card market-card">
-                    <h3>فرع: {{ market.get_place_display }}</h3>
-                    <p>عدد الزوار: {{ market.vesetors.count }}</p>
-                    <h4>الزوار:</h4>
-                    <ul>
-                        {% for vesetor in market.vesetors.all %}
-                        <li>{{ vesetor.name }} - {{ vesetor.phone }}</li>
-                        {% empty %}
-                        <li>لا يوجد زوار لهذا الفرع</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                {% empty %}
-                <div class="empty-message">
-                    <p>لا توجد فأسواق مسجلة حالياً.</p>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-
     {% include 'parts/foter.html' %}
 </body>
 </html>
