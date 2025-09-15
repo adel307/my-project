@@ -1,86 +1,96 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en" dir="rtl">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>موقعي الإلكتروني</title>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    </head>
-    <body>
-        {%include 'parts/navbar.html'%}
-        <!-- قسم الهيرو -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>حلولك التقنية في مكان واحد</h1>
-                    <p>نقدم خدمات وتقنيات متطورة تساعد عملك على النمو والازدهار في العصر الرقمي</p>
-                    <a href="#" class="btn">اكتشف المزيد</a>
-                </div>
-            </div>
-        </section>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة المنتجات والعملاء والأسواق</title>
+    <link rel="stylesheet" href="{% static 'css/products.css' %}">
+    
+</head>
+<body>
+    {% include 'parts/navbar.html' %}
 
-        <!-- قسم الخدمات -->
-        <section class="services">
-            <div class="container">
-                <div class="section-title">
-                    <h2>خدماتنا</h2>
-                    <p>نقدم مجموعة واسعة من الخدمات التقنية لتلبية احتياجاتك</p>
-                </div>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <i class="fas fa-laptop-code"></i>
-                        <h3>تطوير الويب</h3>
-                        <p>تصميم وتطوير مواقع ويب احترافية بتقنيات حديثة وتصميم متجاوب</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-mobile-alt"></i>
-                        <h3>تطبيقات الجوال</h3>
-                        <p>بناء تطبيقات جوال مبتكرة لأنظمة iOS و Android</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>التسويق الرقمي</h3>
-                        <p>تحسين وجودك على الإنترنت وزيادة حركة الزوار لموقعك</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="content">
+        <div class="header">
+            <h1>نظام إدارة المنتجات والعملاء والأسواق</h1>
+            <p>عرض شامل لجميع البيانات في النظام</p>
+        </div>
 
-        <!-- قسم المشاريع -->
-        <section class="projects">
-            <div class="container">
-                <div class="section-title">
-                    <h2>مشاريعنا الأخيرة</h2>
-                    <p>إليك بعض أعمالنا التي نفخر بها</p>
+        <!-- قسم المنتجات -->
+        <div class="section">
+            <h2>المنتجات المتوفرة</h2>
+            <div class="grid-container">
+                {% for product in product_card %}
+                <div class="card">
+                    <h3>{{ product.name }}</h3>
+                    <p class="price-tag">السعر: {{ product.price }} $</p>
+                    <p><span class="badge category-badge">{{ product.get_cotegory_display }}</span></p>
+                    <p>الحالة: 
+                        <span class="badge {% if product.active %}badge-active{% else %}badge-inactive{% endif %}">
+                            {{ product.active|yesno:"نشط,غير نشط" }}
+                        </span>
+                    </p>
+                    {% if product.content %}
+                    <p>الوصف: {{ product.content|truncatewords:15 }}</p>
+                    {% endif %}
+                    {% if product.product_time %}
+                    <p>وقت المنتج: {{ product.product_time.Date }}</p>
+                    {% endif %}
                 </div>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-img">مشروع تجارة إلكترونية</div>
-                        <div class="project-content">
-                            <h3>منصة تسوق</h3>
-                            <p>منصة تسوق إلكتروني بميزات متطورة وواجهة مستخدم رائعة</p>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-img">تطبيق تعليمي</div>
-                        <div class="project-content">
-                            <h3>تعلم اللغة</h3>
-                            <p>تطبيق يساعد المستخدمين على تعلم لغات جديدة بطرق تفاعلية</p>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-img">موقع شركة</div>
-                        <div class="project-content">
-                            <h3>موقع مؤسسي</h3>
-                            <p>تصميم موقع احترافي لشركة بمحتوى ديناميكي وسهولة في التصفح</p>
-                        </div>
-                    </div>
+                {% empty %}
+                <div class="empty-message">
+                    <p>لا توجد منتجات متاحة حالياً.</p>
                 </div>
+                {% endfor %}
             </div>
-        </section>
-        {%include 'parts/foter.html'%}
-    </body>
+        </div>
+
+        <!-- قسم العملاء -->
+        <div class="section">
+            <h2>العملاء المسجلين</h2>
+            <div class="grid-container">
+                {% for clint in clints_card %}
+                <div class="card clint-card">
+                    <h3>{{ clint.name }}</h3>
+                    <p>الهاتف: {{ clint.phone }}</p>
+                    <p>المنتج: {{ clint.product.name }}</p>
+                    <p class="price-tag">سعر المنتج: {{ clint.product.price }} $</p>
+                </div>
+                {% empty %}
+                <div class="empty-message">
+                    <p>لا يوجد عملاء مسجلين حالياً.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- قسم الأسواق -->
+        <div class="section">
+            <h2>فروع الأسواق</h2>
+            <div class="grid-container">
+                {% for market in markets_card %}
+                <div class="card market-card">
+                    <h3>فرع: {{ market.get_place_display }}</h3>
+                    <p>عدد الزوار: {{ market.vesetors.count }}</p>
+                    <h4>الزوار:</h4>
+                    <ul>
+                        {% for vesetor in market.vesetors.all %}
+                        <li>{{ vesetor.name }} - {{ vesetor.phone }}</li>
+                        {% empty %}
+                        <li>لا يوجد زوار لهذا الفرع</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% empty %}
+                <div class="empty-message">
+                    <p>لا توجد فأسواق مسجلة حالياً.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% include 'parts/foter.html' %}
+</body>
 </html>
-
-
