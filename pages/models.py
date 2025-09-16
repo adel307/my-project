@@ -30,7 +30,7 @@ class Product (models.Model):
     # categories
     categories = [
         ('phone','phone'),
-        ('pc','computer'),
+        ('computer','computer'),
         ('TV','TV'),
         ('car','car'),
         ('fan','fan'),
@@ -49,6 +49,7 @@ class Product (models.Model):
 class Clint (models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length = 100)
+    password = models.CharField(max_length = 100)
     phone = models.BigIntegerField(default=0)
     image = models.ImageField(upload_to = 'clint_photo/%y/%m/%d',default = 'photos/25/09/13/tour-list-4.png')
     product = models.ManyToManyField(Product)

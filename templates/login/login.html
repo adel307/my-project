@@ -9,7 +9,21 @@
     </head>
     <body>
         {%include 'parts/navbar.html'%}
-        <form method=""></form>
+        <form method="post">
+            {% csrf_token %}
+            <br>
+            <input type="text" name="user_name">
+            <br>
+            <br>
+            <input type="password" name="password">
+            <br>
+            <br>
+            <input type="submit" value="save">
+
+
+
+
+        </form>
         {%include 'parts/foter.html'%}
     </body>
 </html>
