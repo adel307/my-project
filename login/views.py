@@ -1,5 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
-def test(request):
-    return render(request,'test/test.html',{'name':'adel101'})
+def login(request):
+    return render(request,'login/login.html',{'name':'adel101'})
