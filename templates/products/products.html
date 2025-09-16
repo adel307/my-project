@@ -5,11 +5,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نظام إدارة المنتجات والعملاء والأسواق</title>
-    <link rel="stylesheet" href="{% static 'css/products.css' %}">
-    
+    <!-- <link rel="stylesheet" href="{% static 'css/products.css' %}"> -->
+    <style>
+        .products-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .product-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .product-image {
+            width: 250px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #3498db;
+        }
+        
+        .product-info {
+            flex: 1;
+        }
+        
+        .product-info h3 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+            font-size: 1.5rem;
+        }
+        
+        .price-tag {
+            font-size: 1.2rem;
+            color: #e74c3c;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 5px 5px 5px 0;
+        }
+        
+        .category-badge {
+            background-color: #9b59b6;
+            color: white;
+        }
+        
+        .badge-active {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .badge-inactive {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .no-image {
+            width: 250px;
+            height: 200px;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            border: 2px dashed #ccc;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .product-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .product-image {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
     {% include 'parts/navbar.html' %}
+    
     <div class="content">
         <div class="header">
             <h1>نظام إدارة المنتجات والعملاء والأسواق</h1>
@@ -18,24 +117,47 @@
 
         <!-- قسم المنتجات -->
         <div class="section">
-            <h2>  المنتجات المتوفرة : {{products_num}}</h2>
-            <div class="grid-container">
+            <h2>المنتجات المتوفرة: {{products_num}}</h2>
+            
+            <div class="products-container">
                 {% for product in product_card %}
-                <div class="card">
-                    <h3>{{ product.name }}</h3>
-                    <p class="price-tag">السعر: {{ product.price }} $</p>
-                    <p><span class="badge category-badge">{{ product.get_cotegory_display }}</span></p>
-                    <p>الحالة: 
-                        <span class="badge {% if product.active %}badge-active{% else %}badge-inactive{% endif %}">
-                            {{ product.active|yesno:"نشط,غير نشط" }}
-                        </span>
-                    </p>
-                    {% if product.content %}
-                    <p>الوصف: {{ product.content|truncatewords:15 }}</p>
-                    {% endif %}
-                    {% if product.product_time %}
-                    <p>وقت المنتج: {{ product.product_time.Date }}</p>
-                    {% endif %}
+                <div class="product-item">
+                    <!-- عرض صورة المنتج -->
+                    <div class="image-container">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" 
+                                 alt="{{ product.name }}"
+                                 class="product-image"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="no-image" style="display: none;">
+                                <span>⚠️ الصورة غير متوفرة</span>
+                            </div>
+                        {% else %}
+                            <div class="no-image">
+                                <span>📷 لا توجد صورة</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="product-info">
+                        <h3>{{ product.name }}</h3>
+                        <p class="price-tag">السعر: {{ product.price }} $</p>
+                        
+                        <p>
+                            <span class="badge category-badge">{{ product.get_cotegory_display }}</span>
+                            <span class="badge {% if product.active %}badge-active{% else %}badge-inactive{% endif %}">
+                                {{ product.active|yesno:"نشط,غير نشط" }}
+                            </span>
+                        </p>
+                        
+                        {% if product.content %}
+                        <p><strong>الوصف:</strong> {{ product.content|truncatewords:20 }}</p>
+                        {% endif %}
+                        
+                        {% if product.product_time %}
+                        <p><strong>وقت الإضافة:</strong> {{ product.product_time.Date }}</p>
+                        {% endif %}
+                    </div>
                 </div>
                 {% empty %}
                 <div class="empty-message">
@@ -44,6 +166,8 @@
                 {% endfor %}
             </div>
         </div>
+    </div>
+    
     {% include 'parts/foter.html' %}
 </body>
 </html>
