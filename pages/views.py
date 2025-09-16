@@ -5,3 +5,4 @@ from .models import Product ,Clint ,Market
 def index(request):
     return render(request,'pages/index.html',{"product_card" : Product.objects.all(),'clints_card':Clint.objects.all(),'markets_card':Market.objects.all()})
     
+    
