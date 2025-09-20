@@ -61,7 +61,7 @@ class Clint (models.Model):
 
 class Market (models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length = 100)
+    name = models.CharField(max_length = 100,default = "")
     branch = [
         ('birleen','birleen'),
         ('cairo','cairo'),
