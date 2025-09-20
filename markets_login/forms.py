@@ -8,4 +8,4 @@ class Market_login (forms.Form):
         ('changahi','changahi'),
         ('aslamboom','aslambool'),
     ]
-    place = models.CharField(max_length = 100,verbose_name = 'market place',choices = branch)
+    place = forms.ChoiceField(label = 'market place',choices = branch)
