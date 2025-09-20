@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'login.apps.LoginConfig',
     'products.apps.ProductsConfig',
+    'markets_login.apps.MarketsLoginConfig'
 ]
 
 MIDDLEWARE = [
