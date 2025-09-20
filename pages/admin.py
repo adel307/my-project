@@ -6,4 +6,5 @@ admin.site.register(Time)
 admin.site.register(Clint)
 admin.site.register(Market)
 
-admin.site.site_header = 'adel'
+admin.site.site_header = 'wed site management'
+admin.site.site_title = 'products management'
