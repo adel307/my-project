@@ -5,3 +5,5 @@ admin.site.register(Product)
 admin.site.register(Time)
 admin.site.register(Clint)
 admin.site.register(Market)
+
+admin.site.site_header = 'adel'
