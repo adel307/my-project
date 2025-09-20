@@ -61,6 +61,7 @@ class Clint (models.Model):
 
 class Market (models.Model):
     id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length = 100)
     branch = [
         ('birleen','birleen'),
         ('cairo','cairo'),
@@ -68,5 +69,5 @@ class Market (models.Model):
         ('aslamboom','aslambool'),
     ]
     place = models.CharField(max_length = 100,verbose_name = 'market place',choices = branch)
-    vesetors = models.ManyToManyField(Clint,null = True,blank=True)
-    market_products = models.ManyToManyField(Product,null = True,blank=True)
+    vesetors = models.ManyToManyField(Clint,blank=True)
+    market_products = models.ManyToManyField(Product,blank=True)
