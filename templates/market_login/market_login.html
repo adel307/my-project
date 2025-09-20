@@ -4,16 +4,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام إدارة المنتجات والعملاء والأسواق</title>
-    
+    <title>تسجيل فرع جديد</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .form-container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        button {
+            background: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        
+        button:hover {
+            background: #2980b9;
+        }
+        
+        .messages {
+            margin: 15px 0;
+        }
+        
+        .alert {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .alert-error {
+            background: #ffecec;
+            color: #e74c3c;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .alert-success {
+            background: #e8f5e9;
+            color: #2ecc71;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
 </head>
 <body>
     {% include 'parts/navbar.html' %}
-    <form method="post">
-        {% csrf_token %}
-        {{lf}}
-        <button type="submit">تسجيل الفرع</button>
-    </form>
+    
+    <div class="form-container">
+        <h2 style="text-align: center; margin-bottom: 30px;">تسجيل فرع جديد</h2>
+        
+        <!-- عرض الرسائل -->
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <!-- حقل اسم الفرع -->
+            <div class="form-group">
+                <label for="market_name">اسم الفرع:</label>
+                <input type="text" id="market_name" name="market_name" 
+                       value="{{ market_name|default:'' }}" 
+                       placeholder="أدخل اسم الفرع" required>
+            </div>
+            
+            <!-- حقل المكان -->
+            <div class="form-group">
+                <label for="place">المكان:</label>
+                <select id="place" name="place" required>
+                    <option value="">اختر المكان</option>
+                    <option value="birleen" {% if place == "birleen" %}selected{% endif %}>birleen</option>
+                    <option value="cairo" {% if place == "cairo" %}selected{% endif %}>cairo</option>
+                    <option value="changahi" {% if place == "changahi" %}selected{% endif %}>changahi</option>
+                    <option value="aslamboom" {% if place == "aslamboom" %}selected{% endif %}>aslambool</option>
+                </select>
+            </div>
+            
+            <button type="submit">تسجيل الفرع</button>
+        </form>
+    </div>
+    
     {% include 'parts/foter.html' %}
 </body>
 </html>
