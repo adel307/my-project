@@ -44,7 +44,7 @@ class Product (models.Model):
         return self.name
     class Meta : 
         verbose_name = 'product'
-        ordering = ['-name']
+        ordering = ['id']
 
 class Clint (models.Model):
     id = models.AutoField(primary_key=True)
